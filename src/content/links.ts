@@ -10,7 +10,7 @@ export const links: LinkContent[] = [
     id: 'github',
     icon: github,
     name: 'Github',
-    url: 'https://github.com/louwiis',
+    url: 'https://github.com/luistl',
   },
   {
     id: 'linkedin',
