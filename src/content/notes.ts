@@ -18,7 +18,7 @@ const aboutMe = `<div>Hey, <span class='wave'>👋🏼</span></div>
 
 const projects = `J'aime bien bricoler des projets en dehors du travail et de l'école, souvent autour de sujets qui me passionnent comme le sport et les paris sportifs.
 <div><br></div>
-<div>Mon projet principal du moment, c'est BetLens, un outil de suivi et d'analyse de paris sportifs (tu trouveras sa fiche juste à côté).</div>
+<div>Mon projet principal du moment, c'est BetLens, un outil de suivi et d'analyse de paris sportifs (ouvre son dossier juste à côté pour le découvrir en images).</div>
 <div><br></div>
 <div>À côté de ça, je m'amuse régulièrement avec des bots, des scripts d'automatisation et pleins d'autres petites expérimentations.</div>
 <div><br></div>

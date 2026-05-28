@@ -4,6 +4,9 @@ import agilySetup from '@/assets/images/agily/setup.png';
 import agilyPoussin from '@/assets/images/agily/poussin.png';
 import agilyPhoto1 from '@/assets/images/agily/photo-1.jpg';
 import agilyPhoto2 from '@/assets/images/agily/photo-2.jpg';
+import betlensOverview from '@/assets/images/betlens/overview.png';
+import betlensSync from '@/assets/images/betlens/synchronisation.png';
+import betlensFilters from '@/assets/images/betlens/filters.png';
 
 export const pictures: PictureContent[] = [
   {
@@ -35,5 +38,23 @@ export const pictures: PictureContent[] = [
     icon: agilyPhoto2,
     src: agilyPhoto2,
     name: 'Photo 2',
+  },
+  {
+    id: 'betlens-overview',
+    icon: betlensOverview,
+    src: betlensOverview,
+    name: "Vue d'ensemble",
+  },
+  {
+    id: 'betlens-synchronisation',
+    icon: betlensSync,
+    src: betlensSync,
+    name: 'Synchronisation des paris',
+  },
+  {
+    id: 'betlens-filters',
+    icon: betlensFilters,
+    src: betlensFilters,
+    name: 'Filtres',
   },
 ];
