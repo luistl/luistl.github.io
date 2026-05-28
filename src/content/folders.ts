@@ -13,13 +13,13 @@ export const folders: FolderContent[] = [
     id: 'experiences',
     icon: folder,
     name: 'Mes expériences',
-    files: ['agily', 'agilbox'],
+    files: ['agilbox', 'asquinas', 'sunday', 'agily'],
   },
   {
     id: 'projects',
     icon: folder,
     name: 'Mes projets',
-    files: ['note-projects', 'github'],
+    files: ['note-projects', 'note-betlens', 'github'],
   },
   {
     id: 'agily',
@@ -32,6 +32,18 @@ export const folders: FolderContent[] = [
     icon: folder,
     name: 'Agilbox',
     files: ['note-agilbox', 'agilbox-pictures'],
+  },
+  {
+    id: 'asquinas',
+    icon: folder,
+    name: 'As Quinas',
+    files: ['note-asquinas'],
+  },
+  {
+    id: 'sunday',
+    icon: folder,
+    name: 'Sunday',
+    files: ['note-sunday'],
   },
   {
     id: 'agily-pictures',
