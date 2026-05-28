@@ -1,7 +1,6 @@
-<script setup>
-import { RouterView } from 'vue-router'
-
-import iphone from '@/assets/images/iphone.png'
+<script setup lang="ts">
+import { RouterView } from 'vue-router';
+import iphone from '@/assets/images/iphone.png';
 </script>
 
 <template>

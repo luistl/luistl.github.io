@@ -1,96 +1,78 @@
 <script setup lang="ts">
-import tabsStore from '../stores/tabs';
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
+import { useTabsStore } from '@/stores/tabs';
+import { useDrag } from '@/composables/useDrag';
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-  },
-  x: {
-    type: Number,
-    default: 0
-  },
-  y: {
-    type: Number,
-    default: 0
-  },
-});
+const props = defineProps<{
+  id: string;
+  x?: number;
+  y?: number;
+}>();
 
-const openTab = (id: string) => {
-  const tab = tabsStore.getTabById(id);
+const tabsStore = useTabsStore();
 
-  if (tab?.url) {
-    window.open(tab.url, '_blank');
+const tab = computed(() => tabsStore.getTabById(props.id));
+const isPicture = computed(() => tab.value?.kind === 'picture');
+const isPositioned = computed(() => props.x !== undefined && props.y !== undefined);
+
+const x = ref(props.x ?? 0);
+const y = ref(props.y ?? 0);
+
+function activate() {
+  if (!tab.value) return;
+
+  if (tab.value.kind === 'link') {
+    window.open(tab.value.url, '_blank');
     return;
   }
 
-  tabsStore.openTab(id);
-};
+  tabsStore.openTab(tab.value.id);
+}
 
-const tab = tabsStore.getTabById(props.id);
+const startDrag = useDrag({
+  getInitial: () => ({ x: x.value, y: y.value }),
+  onDrag: (pos) => {
+    x.value = pos.x;
+    y.value = pos.y;
+  },
+});
 
-const x = ref(props.x);
-const y = ref(props.y);
-
-const drag = (e: MouseEvent) => {
-  const startX = e.clientX;
-  const startY = e.clientY;
-
-  const startLeft = x.value;
-  const startTop = y.value;
-
-  const mouseMove = (e: MouseEvent) => {
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-
-    x.value = startLeft + dx;
-    y.value = startTop + dy;
-  };
-
-  const mouseUp = () => {
-    window.removeEventListener('mousemove', mouseMove);
-    window.removeEventListener('mouseup', mouseUp);
-  };
-
-  window.addEventListener('mousemove', mouseMove);
-  window.addEventListener('mouseup', mouseUp);
+function onMouseDown(event: MouseEvent) {
+  if (isPositioned.value) startDrag(event);
 }
 </script>
 
 <template>
   <div
+    v-if="tab"
     class="icon"
-    :class="{ image: tab?.ratio }"
-    :style="{ top: y + 'px', left: x + 'px' }"
-    @dblclick="openTab(tab?.id)"
-    @mousedown="drag"
+    :class="{ image: isPicture, positioned: isPositioned }"
+    :style="isPositioned ? { top: y + 'px', left: x + 'px' } : undefined"
+    @dblclick="activate"
+    @mousedown="onMouseDown"
   >
-    <img :src="tab?.icon" :alt="tab?.name" unselectable="on" />
-    
-    <div class="name">{{ tab?.name }}</div>
+    <img :src="tab.icon" :alt="tab.name" unselectable="on" />
+    <div class="name">{{ tab.name }}</div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .icon {
-  position: relative;
-  position: absolute;
   display: flex;
-
   flex-direction: column;
   align-items: center;
   width: 100px;
   height: fit-content;
-
   cursor: pointer;
   user-select: none;
   gap: 8px;
 
-  &.image {
-    img {
-      border: 3px solid white;
-    }
+  &.positioned {
+    position: absolute;
+  }
+
+  &.image img {
+    border: 3px solid white;
   }
 
   img {

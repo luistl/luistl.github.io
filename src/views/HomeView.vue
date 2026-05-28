@@ -1,43 +1,48 @@
 <script setup lang="ts">
-import tabsStore from '../stores/tabs';
 import { computed } from 'vue';
+import { useTabsStore } from '@/stores/tabs';
+import { desktopIcons } from '@/content';
+import Icon from '@/components/Icon.vue';
+import TerminalWindow from '@/components/windows/TerminalWindow.vue';
+import NoteWindow from '@/components/windows/NoteWindow.vue';
+import FolderWindow from '@/components/windows/FolderWindow.vue';
+import ImageWindow from '@/components/windows/ImageWindow.vue';
 
-import Icon from '../components/Icon.vue';;
+const tabsStore = useTabsStore();
 
-import TerminalWindow from '../components/TerminalWindow.vue';
-import NoteWindow from '../components/NoteWindow.vue';
-import FolderWindow from '../components/FolderWindow.vue';
-import ImageWindow from '../components/ImageWindow.vue';
-
-const terminal = tabsStore.getTabById('terminal');
-
-const notes = tabsStore.state.notes;
-const folders = tabsStore.state.folders;
-const images = tabsStore.state.pictures;
+const terminal = computed(() => tabsStore.getTabById('terminal'));
+const notes = computed(() => tabsStore.tabsByKind('note'));
+const folders = computed(() => tabsStore.tabsByKind('folder'));
+const pictures = computed(() => tabsStore.tabsByKind('picture'));
+const activeTabs = computed(() => tabsStore.activeTabs);
 </script>
 
 <template>
   <main>
-    <Icon id="terminal" :x="16" :y="16" />
-    <Icon id="experiences" :x="16" :y="272" />
-    <Icon id="trash" :x="144" :y="16" />
-    <Icon id="personal" :x="16" :y="144" />
-    <Icon id="projects" :x="16" :y="400" />
+    <Icon
+      v-for="icon in desktopIcons"
+      :key="icon.id"
+      :id="icon.id"
+      :x="icon.x"
+      :y="icon.y"
+    />
 
-    
-    <TerminalWindow v-if="terminal?.isOpened" />
+    <TerminalWindow v-if="terminal && 'isOpened' in terminal && terminal.isOpened" />
 
-    <NoteWindow v-for="note in notes" :id="note.id" />
-    <FolderWindow v-for="folder in folders" :id="folder.id"/>
-    <ImageWindow v-for="image in images" :id="image.id"/>
+    <NoteWindow v-for="note in notes" :key="note.id" :id="note.id" />
+    <FolderWindow v-for="folder in folders" :key="folder.id" :id="folder.id" />
+    <ImageWindow v-for="picture in pictures" :key="picture.id" :id="picture.id" />
 
-    <div v-if="tabsStore.getActiveTabs().length > 0" class="menu">
-      <div v-for="tab in tabsStore.getActiveTabs()" :key="tab.id" class="app" @click="tabsStore.openTab(tab.id)">
+    <div v-if="activeTabs.length > 0" class="menu">
+      <div
+        v-for="tab in activeTabs"
+        :key="tab.id"
+        class="app"
+        @click="tabsStore.openTab(tab.id)"
+      >
         <img :src="tab.icon" :alt="tab.name" unselectable="on" />
-
         <div class="name">{{ tab.name }}</div>
-
-        <div v-if="tab.isMinimized" class="minimize"></div>
+        <div v-if="tab.isMinimized" class="minimize" />
       </div>
     </div>
   </main>
@@ -69,36 +74,23 @@ main {
     .app {
       height: 60px;
       position: relative;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      .icon {
-        position: inherit;
-
-        :deep(.name) {
-          display: none;
-        }
-      }
-      
-      &:hover {
-        .name {
-          display: block;
-
-          position: absolute;
-          bottom: 120%;
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: rgba(#000000, 0.8);
-          
-          border-radius: 4px;
-          color: #FFFFFF;
-          padding: 4px 8px;
-          white-space: nowrap;
-          text-align: center;
-        }
+      &:hover .name {
+        display: block;
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(#000000, 0.8);
+        border-radius: 4px;
+        color: #FFFFFF;
+        padding: 4px 8px;
+        white-space: nowrap;
+        text-align: center;
       }
 
       img {
@@ -120,11 +112,6 @@ main {
         height: 5px;
         border-radius: 50%;
         background-color: rgba(#fff, 0.4);
-        color: #FFFFFF;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 12px;
       }
     }
   }
