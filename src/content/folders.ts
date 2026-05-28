@@ -25,7 +25,13 @@ export const folders: FolderContent[] = [
     id: 'betlens',
     icon: folder,
     name: 'BetLens',
-    files: ['note-betlens', 'betlens-overview', 'betlens-synchronisation', 'betlens-filters'],
+    files: ['note-betlens', 'betlens-pictures'],
+  },
+  {
+    id: 'betlens-pictures',
+    icon: folder,
+    name: 'Quelques captures',
+    files: ['betlens-overview', 'betlens-synchronisation', 'betlens-filters'],
   },
   {
     id: 'agily',
