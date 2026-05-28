@@ -7,7 +7,7 @@ export const folders: FolderContent[] = [
     id: 'personal',
     icon: folder,
     name: 'À propos de moi',
-    files: ['note-aboutme', 'mail', 'github', 'linkedin', 'cv'],
+    files: ['note-aboutme', 'mail', 'linkedin', 'cv'],
   },
   {
     id: 'experiences',
@@ -19,7 +19,7 @@ export const folders: FolderContent[] = [
     id: 'projects',
     icon: folder,
     name: 'Mes projets',
-    files: ['note-projects', 'note-betlens', 'github'],
+    files: ['note-projects', 'note-betlens'],
   },
   {
     id: 'agily',

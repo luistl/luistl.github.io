@@ -22,7 +22,7 @@ const projects = `J'aime bien bricoler des projets en dehors du travail et de l'
 <div><br></div>
 <div>À côté de ça, je m'amuse régulièrement avec des bots, des scripts d'automatisation et pleins d'autres petites expérimentations.</div>
 <div><br></div>
-<div>Et si tu souhaites voir un peu de mon code, des exercices que j'ai pu faire lors de mes cours, des scripts ou encore des tutos pour des amis d'école sont trouvables sur mon github.</div>
+<div>La plupart de ces projets restent aujourd'hui privés, mais ça me fera toujours plaisir de t'en parler plus en détail de vive voix !</div>
 <div><br></div>`;
 
 const asquinas = `As Quinas, c'est mon aventure en freelance la plus longue : je m'en occupe depuis janvier 2023.
