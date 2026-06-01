@@ -16,6 +16,14 @@ function onInput(event: Event) {
   const target = event.target as HTMLElement;
   tabsStore.updateNoteContent(props.id, target.innerHTML);
 }
+
+function onClick(event: MouseEvent) {
+  const anchor = (event.target as HTMLElement).closest('a');
+  if (!anchor) return;
+  event.preventDefault();
+  const url = anchor.getAttribute('href');
+  if (url) window.open(url, '_blank', 'noopener,noreferrer');
+}
 </script>
 
 <template>
@@ -25,6 +33,7 @@ function onInput(event: Event) {
       :innerHTML="note.content"
       contenteditable="true"
       @input="onInput"
+      @click="onClick"
     />
   </TabbedWindow>
 </template>

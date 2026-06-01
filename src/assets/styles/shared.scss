@@ -33,4 +33,10 @@
   :deep(.highlight) {
     color: rgb(255, 0, 0);
   }
+
+  :deep(a) {
+    color: rgb(100, 181, 246);
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

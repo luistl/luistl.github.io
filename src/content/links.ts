@@ -3,6 +3,7 @@ import linkedin from '@/assets/images/linkedin.png';
 import mail from '@/assets/images/mail.png';
 import cv from '@/assets/images/cv.pdf';
 import cvIcon from '@/assets/images/cv-icon.png';
+import asquinasLogo from '@/assets/images/asquinas-logo.png';
 
 export const links: LinkContent[] = [
   {
@@ -22,5 +23,11 @@ export const links: LinkContent[] = [
     icon: cvIcon,
     name: 'CV',
     url: cv,
+  },
+  {
+    id: 'asquinas-site',
+    icon: asquinasLogo,
+    name: 'asquinas.fr',
+    url: 'https://asquinas.fr',
   },
 ];

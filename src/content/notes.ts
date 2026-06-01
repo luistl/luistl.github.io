@@ -27,7 +27,7 @@ const projects = `J'aime bien bricoler des projets en dehors du travail et de l'
 
 const asquinas = `As Quinas, c'est mon aventure en freelance la plus longue : je m'en occupe depuis janvier 2023.
 <div><br></div>
-<div>Il s'agit d'asquinas.fr, un média d'actualité dédié au football lusophone, qui réunit aujourd'hui entre 50 000 et 150 000 pages vues par mois.</div>
+<div>Il s'agit d'<a href="https://asquinas.fr" target="_blank" rel="noopener noreferrer">asquinas.fr</a>, un média d'actualité dédié au football lusophone, qui réunit aujourd'hui entre 50 000 et 150 000 pages vues par mois.</div>
 <div><br></div>
 <div>J'ai construit et je continue de maintenir le site autour d'une architecture SSR/SSG, avec la création et la gestion de ses API et de sa base de données.</div>
 <div><br></div>

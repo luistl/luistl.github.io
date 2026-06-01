@@ -49,7 +49,7 @@ export const folders: FolderContent[] = [
     id: 'asquinas',
     icon: folder,
     name: 'As Quinas',
-    files: ['note-asquinas'],
+    files: ['note-asquinas', 'asquinas-site'],
   },
   {
     id: 'sunday',
